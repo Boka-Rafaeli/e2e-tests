@@ -54,10 +54,16 @@ export abstract class Component {
   }
 
   async checkIsVisible(locatorProps: LocatorProps = {}): Promise<boolean> {
-    await test.step(`${this.typeOfUpper} "${this.componentName}" should be visible on the page`, async () => {
+    return await test.step(`${this.typeOfUpper} "${this.componentName}" should be visible on the page`, async () => {
       const locator = this.getLocator(locatorProps);
+      try {
+        const isVisible = await locator.isVisible({ timeout: 1000 });
+        return isVisible;
+      } catch (e) {
+        console.error(this.getErrorMessage('is not visible'), e);
+        return false;
+      }
     });
-    return await this.getLocator(locatorProps).isVisible({ timeout: 1000 }).catch(e => false);
   }
 
   async shouldHaveText(text: string, locatorProps: LocatorProps = {}): Promise<void> {

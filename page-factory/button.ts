@@ -22,7 +22,7 @@ export class Button extends Component {
   }
 
   async click(locatorProps: LocatorProps = {}) {
-    await test.step(`click clicking ${this.typeOf} with name "${this.componentName}"`, async () => {
+    await test.step(`Single click ${this.typeOf} with name "${this.componentName}"`, async () => {
       const locator = this.getLocator(locatorProps);
       await locator.click();
     });
