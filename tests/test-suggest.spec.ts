@@ -6,8 +6,6 @@ test.beforeEach(async ({ yaHomePage }) => {
 
 test.skip('Click on search input - search suggest list should be visible', async ({ yaHomePage, yaMenuPage }) => {
   await yaHomePage.navbar.openMenu();
-
   await yaMenuPage.mailButtonPresent();
-
   await yaHomePage.navbar.page.waitForTimeout(2000);
 });

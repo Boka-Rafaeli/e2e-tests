@@ -1,5 +1,5 @@
-import { Page } from '@playwright/test';
 import { Button } from '../../page-factory/button';
+import { Page } from '@playwright/test';
 
 export class Navbar {
 

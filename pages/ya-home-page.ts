@@ -15,11 +15,11 @@ export class YaHomePage extends BasePage {
     this.resulItems = new ListItem({ page, locator: '#dynamicList li', name: 'List Items' });
   }
 
-  async triangleButtonPresent() {
+  async triangleToBeVisible() {
     await this.triangle.shouldBeVisible();
   }
 
-  async clickTriangleButtonUntilListVisible() {
+  async clickOnTriangleBtnUntilListToBeVisible() {
     let isVisible = false;
     while (!isVisible) {
       await this.triangle.click();
@@ -27,9 +27,8 @@ export class YaHomePage extends BasePage {
     }
   }
 
-  async checkResultFound(text: string) {
-    await this.resulItems.shouldHaveTextInItems(text);
+  async checkFoundResult(searchString: string) {
+    await this.resulItems.shouldHaveTextInItems(searchString);
   }
-
 
 }

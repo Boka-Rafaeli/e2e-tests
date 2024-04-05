@@ -11,11 +11,12 @@ export class Search {
     this.searchInputField = new Input({ page, locator: '#text', name: 'text' });
   }
 
-  async searchFreeText(text: string) {
-    await this.searchInputField.fill(text);
+  async freeText(searchString: string) {
+    await this.searchInputField.fill(searchString);
   }
 
   async clickOnBtn() {
     await this.searchButton.click();
   }
+
 }

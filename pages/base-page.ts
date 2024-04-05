@@ -24,4 +24,5 @@ export class BasePage {
       await this.page.reload({ waitUntil: 'domcontentloaded' });
     });
   }
+
 }

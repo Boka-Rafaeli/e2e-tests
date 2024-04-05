@@ -6,10 +6,9 @@ test.beforeEach(async ({ yaHomePage }) => {
 
 test('Enter "Яндекс" in search bar, press "Найти" - should be opened search results', async ({ yaHomePage }) => {
   const searchTextValue = 'Текст который надо найти';
-
-  await yaHomePage.search.searchFreeText(searchTextValue);
+  await yaHomePage.search.freeText(searchTextValue);
   await yaHomePage.search.clickOnBtn();
-  await yaHomePage.triangleButtonPresent();
-  await yaHomePage.clickTriangleButtonUntilListVisible();
-  await yaHomePage.checkResultFound(searchTextValue);
+  await yaHomePage.triangleToBeVisible();
+  await yaHomePage.clickOnTriangleBtnUntilListToBeVisible();
+  await yaHomePage.checkFoundResult(searchTextValue);
 });

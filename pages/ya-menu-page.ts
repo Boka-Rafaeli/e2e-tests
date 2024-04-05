@@ -8,10 +8,16 @@ export class YaMenuPage extends BasePage {
   constructor(public page: Page) {
     super(page);
 
-    this.mailButton = new Button({ page, locator: '.MenuItem_mail', name: 'Mail Button', iframe: '.usermenu-portal__iframe' });
+    this.mailButton = new Button({
+      page,
+      locator: '.MenuItem_mail',
+      name: 'Mail Button',
+      iframe: '.usermenu-portal__iframe'
+    });
   }
 
   async mailButtonPresent() {
     await this.mailButton.shouldBeVisible();
   }
+
 }
