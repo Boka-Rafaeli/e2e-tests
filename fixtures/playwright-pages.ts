@@ -1,7 +1,7 @@
-import { Fixtures } from '@playwright/test';
+import { ContextPagesFixture } from './context-pages';
 import { YaHomePage } from '../pages/ya-home-page';
 import { YaMenuPage } from '../pages/ya-menu-page';
-import { ContextPagesFixture } from './context-pages';
+import { Fixtures } from '@playwright/test';
 
 export type PlaywrightPagesFixture = {
   yaHomePage: YaHomePage;
