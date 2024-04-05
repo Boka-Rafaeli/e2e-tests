@@ -1,13 +1,13 @@
-import { expect, Locator, Page, test } from '@playwright/test';
 import { ComponentProps, LocatorProps } from '../types/page-factory/component';
-import { capitalizeFirstLetter } from '../utils/generic';
+import { expect, Locator, Page, test } from '@playwright/test';
 import { locatorTemplateFormat } from '../utils/page-factory';
+import { capitalizeFirstLetter } from '../utils/generic';
 
 export abstract class Component {
-  page: Page;
-  locator: string;
   private name: string | undefined;
   private iframe: string | undefined;
+  locator: string;
+  page: Page;
 
   constructor({ page, locator, name, iframe }: ComponentProps) {
     this.page = page;
@@ -53,10 +53,25 @@ export abstract class Component {
     });
   }
 
+  async checkIsVisible(locatorProps: LocatorProps = {}): Promise<boolean> {
+    await test.step(`${this.typeOfUpper} "${this.componentName}" should be visible on the page`, async () => {
+      const locator = this.getLocator(locatorProps);
+    });
+    return await this.getLocator(locatorProps).isVisible({ timeout: 1000 }).catch(e => false);
+  }
+
   async shouldHaveText(text: string, locatorProps: LocatorProps = {}): Promise<void> {
     await test.step(`${this.typeOfUpper} "${this.componentName}" should have text "${text}"`, async () => {
       const locator = this.getLocator(locatorProps);
       await expect(locator, { message: this.getErrorMessage(`does not have text "${text}"`) }).toContainText(text);
+    });
+  }
+
+  async shouldHaveTextInItems(expectedText: string, locatorProps: LocatorProps = {}): Promise<void> {
+    await test.step(`${this.typeOfUpper} "${this.componentName}" should have text "${expectedText}"`, async () => {
+      const locator = this.getLocator(locatorProps);
+      let items = await locator.allInnerTexts();
+      expect(items, { message: this.getErrorMessage(`does not have text "${expectedText}"`) }).toContain(expectedText);
     });
   }
 

@@ -1,6 +1,6 @@
+import { Button } from '../page-factory/button';
 import { Page } from '@playwright/test';
 import { BasePage } from './base-page';
-import { Button } from '../page-factory/button';
 
 export class YaMenuPage extends BasePage {
   private readonly mailButton: Button;
